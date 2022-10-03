@@ -1,25 +1,24 @@
 package io.github.pauloferrarez.cursomc.application.controllers;
 
 import io.github.pauloferrarez.cursomc.domain.model.Categoria;
+import io.github.pauloferrarez.cursomc.domain.service.CategoriaService;
+import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
 @RequestMapping(value = "/categorias")
+@AllArgsConstructor
 public class CategoriaController {
 
-    @GetMapping()
-    public List<Categoria> findAll(){
+    private CategoriaService categoriaService;
 
-        List<Categoria> categorias = new ArrayList<>();
-
-        categorias.add(new Categoria(1, "Informática"));
-        categorias.add(new Categoria(2, "Robótica"));
-
-        return categorias;
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Categoria> findById(@PathVariable Integer id){
+        return new ResponseEntity<>(categoriaService.findById(id), HttpStatus.OK);
     }
 }
