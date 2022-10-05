@@ -1,8 +1,12 @@
 package io.github.pauloferrarez.cursomc;
 
 import io.github.pauloferrarez.cursomc.domain.model.Categoria;
+import io.github.pauloferrarez.cursomc.domain.model.Cidade;
+import io.github.pauloferrarez.cursomc.domain.model.Estado;
 import io.github.pauloferrarez.cursomc.domain.model.Produto;
 import io.github.pauloferrarez.cursomc.persistance.repository.CategoriaRepository;
+import io.github.pauloferrarez.cursomc.persistance.repository.CidadeRepository;
+import io.github.pauloferrarez.cursomc.persistance.repository.EstadoRepository;
 import io.github.pauloferrarez.cursomc.persistance.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -18,9 +22,12 @@ public class CursomcApplication implements CommandLineRunner {
 
     @Autowired
     private CategoriaRepository categoriaRepository;
-
     @Autowired
     private ProdutoRepository produtoRepository;
+    @Autowired
+    private EstadoRepository estadoRepository;
+    @Autowired
+    private CidadeRepository cidadeRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursomcApplication.class, args);
@@ -28,6 +35,8 @@ public class CursomcApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //Método pra fazer testes rapido e fácil
 
         if (categoriaRepository.findById(1).orElse(null) == null) {
 
@@ -47,6 +56,17 @@ public class CursomcApplication implements CommandLineRunner {
 
             categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
             produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
+
+
+            Estado estado1 = new Estado(null, "São Paulo", "SP");
+            Estado estado2 = new Estado(null, "Minas Gerais", "MG");
+
+            Cidade cidade1 = new Cidade(null, "Barra Bonita", estado1);
+            Cidade cidade2 = new Cidade(null, "Jaú", estado1);
+            Cidade cidade3 = new Cidade(null, "Belo Horizonte", estado2);
+
+            estadoRepository.saveAll(Arrays.asList(estado1, estado2));
+            cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
         }
     }
 }
