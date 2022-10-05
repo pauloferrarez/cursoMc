@@ -1,5 +1,6 @@
 package io.github.pauloferrarez.cursomc.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,6 +26,7 @@ public class Produto implements Serializable {
     @Column(name = "PRECO")
     private Double preco;
 
+    @JsonManagedReference
     @ManyToMany()
     @JoinTable(
             name = "PRODUTO_CATEGORIA",

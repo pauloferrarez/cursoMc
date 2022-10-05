@@ -1,5 +1,6 @@
 package io.github.pauloferrarez.cursomc.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +24,7 @@ public class Categoria implements Serializable {
     @Column(name = "NOME")
     private String nome;
 
+    @JsonBackReference
     @ManyToMany(mappedBy = "categorias")
     private List<Produto> produtos = new ArrayList<>();
 

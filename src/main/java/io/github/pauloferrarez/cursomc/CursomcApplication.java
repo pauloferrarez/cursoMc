@@ -29,22 +29,24 @@ public class CursomcApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Categoria categoria1 = new Categoria(null, "Informática");
-        Categoria categoria2 = new Categoria(null, "Escritório");
+        if (categoriaRepository.findById(1).orElse(null) == null) {
 
-        Produto prod1 = new Produto(null, "Computador", 2000.00);
-        Produto prod2 = new Produto(null, "Impressora", 800.00);
-        Produto prod3 = new Produto(null, "Mouse", 80.00);
+            Categoria categoria1 = new Categoria(null, "Informática");
+            Categoria categoria2 = new Categoria(null, "Escritório");
 
-        categoria1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
-        categoria2.getProdutos().add(prod2);
+            Produto prod1 = new Produto(null, "Computador", 2000.00);
+            Produto prod2 = new Produto(null, "Impressora", 800.00);
+            Produto prod3 = new Produto(null, "Mouse", 80.00);
 
-        prod1.getCategorias().addAll(List.of(categoria1));
-        prod2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
-        prod3.getCategorias().addAll(List.of(categoria1));
+            categoria1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
+            categoria2.getProdutos().add(prod2);
 
-        categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
-        produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
+            prod1.getCategorias().addAll(List.of(categoria1));
+            prod2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
+            prod3.getCategorias().addAll(List.of(categoria1));
 
+            categoriaRepository.saveAll(Arrays.asList(categoria1, categoria2));
+            produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
+        }
     }
 }
