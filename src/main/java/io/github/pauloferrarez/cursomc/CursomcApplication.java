@@ -1,19 +1,12 @@
 package io.github.pauloferrarez.cursomc;
 
-import io.github.pauloferrarez.cursomc.domain.model.Categoria;
-import io.github.pauloferrarez.cursomc.domain.model.Cidade;
-import io.github.pauloferrarez.cursomc.domain.model.Estado;
-import io.github.pauloferrarez.cursomc.domain.model.Produto;
-import io.github.pauloferrarez.cursomc.persistance.repository.CategoriaRepository;
-import io.github.pauloferrarez.cursomc.persistance.repository.CidadeRepository;
-import io.github.pauloferrarez.cursomc.persistance.repository.EstadoRepository;
-import io.github.pauloferrarez.cursomc.persistance.repository.ProdutoRepository;
+import io.github.pauloferrarez.cursomc.domain.model.*;
+import io.github.pauloferrarez.cursomc.persistance.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
@@ -28,6 +21,10 @@ public class CursomcApplication implements CommandLineRunner {
     private EstadoRepository estadoRepository;
     @Autowired
     private CidadeRepository cidadeRepository;
+    @Autowired
+    private ClienteRepository clienteRepository;
+    @Autowired
+    private EnderecoRepository enderecoRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursomcApplication.class, args);
@@ -67,6 +64,21 @@ public class CursomcApplication implements CommandLineRunner {
 
             estadoRepository.saveAll(Arrays.asList(estado1, estado2));
             cidadeRepository.saveAll(Arrays.asList(cidade1, cidade2, cidade3));
+
+            Cliente cliente1 = new Cliente(null, "Paulinho", "paul@da.com",
+                    "40028922", TipoClienteEnum.PESSOA_FISICA);
+            Cliente cliente2 = new Cliente(null, "Jaozin", "cudagua@gmail.com",
+                    "40028922", TipoClienteEnum.PESSOA_JURIDICA);
+
+            cliente1.getTelefones().addAll(Arrays.asList("14 99707-5368", "14 3641-4257"));
+
+            Endereco endereco1 = new Endereco(null, "Rua Augusto da Silva", "576", null,
+                    "Jd Nova Barra", "17347-456", cidade1, cliente1);
+            Endereco endereco2 = new Endereco(null, "Rua dos Caduca", "475", "Apartamento",
+                    "Condomínio do Ararau", "17349-587", cidade2, cliente1);
+
+            clienteRepository.saveAll(Arrays.asList(cliente1, cliente2));
+            enderecoRepository.saveAll(Arrays.asList(endereco1, endereco2));
         }
     }
 }

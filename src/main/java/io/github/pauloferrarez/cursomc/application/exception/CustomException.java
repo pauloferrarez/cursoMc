@@ -1,6 +1,5 @@
 package io.github.pauloferrarez.cursomc.application.exception;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;

@@ -4,6 +4,7 @@ import io.github.pauloferrarez.cursomc.application.exception.CustomException;
 import io.github.pauloferrarez.cursomc.domain.model.Categoria;
 import io.github.pauloferrarez.cursomc.persistance.repository.CategoriaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,6 @@ public class CategoriaService{
 
     public Categoria findById(Integer id){
         return categoriaRepository.findById(id)
-                .orElseThrow(() -> new CustomException("Objeto não encontrado! Id: " + id));
+                .orElseThrow(() -> new CustomException("Objeto não encontrado! Id: " + id, HttpStatus.NOT_FOUND));
     }
 }
