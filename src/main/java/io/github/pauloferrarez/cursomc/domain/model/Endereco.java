@@ -1,5 +1,6 @@
 package io.github.pauloferrarez.cursomc.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -40,6 +41,7 @@ public class Endereco implements Serializable {
     @JoinColumn(name = "CIDADE", referencedColumnName = "ID_CIDADE")
     private Cidade cidade;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "CLIENTE", referencedColumnName = "ID_CLIENTE")
     private Cliente cliente;

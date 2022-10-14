@@ -1,6 +1,7 @@
 package io.github.pauloferrarez.cursomc;
 
 import io.github.pauloferrarez.cursomc.domain.model.*;
+import io.github.pauloferrarez.cursomc.domain.model.enums.TipoClienteEnum;
 import io.github.pauloferrarez.cursomc.persistance.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

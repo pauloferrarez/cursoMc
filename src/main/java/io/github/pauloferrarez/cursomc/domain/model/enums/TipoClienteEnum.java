@@ -1,4 +1,4 @@
-package io.github.pauloferrarez.cursomc.domain.model;
+package io.github.pauloferrarez.cursomc.domain.model.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

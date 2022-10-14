@@ -1,5 +1,6 @@
 package io.github.pauloferrarez.cursomc.domain.model;
 
+import io.github.pauloferrarez.cursomc.domain.model.enums.TipoClienteEnum;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

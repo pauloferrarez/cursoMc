@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class CategoriaController {
 
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
 
     @GetMapping(value = "/{id}")
     public ResponseEntity<Categoria> findById(@PathVariable Integer id){
